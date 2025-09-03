@@ -1,22 +1,27 @@
+---
+import "@/styles/global.css";
+
+import { ClientRouter } from "astro:transitions";
+import { Toaster } from "sonner";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Mi Aprendizaje</title>
+    <ClientRouter />
+  </head>
+  <body class:list={["w-screen h-screen", [className]]}>
+    <Toaster client:only richColors position="top-center" />
+    <slot />
+  </body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

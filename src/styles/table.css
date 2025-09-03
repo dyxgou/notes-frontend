@@ -1,0 +1,3 @@
+.final-grade {
+  @apply bg-linear-to-t from-green-100 to-90% to-transparent;
+}

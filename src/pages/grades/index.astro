@@ -1,0 +1,17 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import BackLight from "@/components/common/BackLight.astro";
+import Course from "@/components/common/Course.astro";
+import { courses } from "@/pages/_metadata/courses";
+---
+
+<Layout class="p-12 flex flex-col items-center" transition:animate="slide">
+  <BackLight />
+  <h2 class="text-center text-5xl font-semibold tracking-tight text-gray-900">
+    Cursos
+  </h2>
+
+  <nav class="courses">
+    {courses.map((_, i) => <Course course={i} />)}
+  </nav>
+</Layout>

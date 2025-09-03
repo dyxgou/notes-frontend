@@ -1,0 +1,48 @@
+---
+export const prerender = false;
+
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Table/Header.astro";
+import Toolbar from "@/components/Table/Toolbar/Toolbar.astro";
+import BackLight from "@/components/common/BackLight.astro";
+import Table from "@/components/Table/Table.astro";
+import { actions } from "astro:actions";
+import {
+  validateParams,
+  type SubjectKind,
+  type ValidateParamsArgs,
+} from "@/pages/_metadata/subjects";
+
+const { course, period, subject } = validateParams(
+  Astro.params as ValidateParamsArgs,
+);
+
+const { data, error } = await Astro.callAction(actions.subject.createOrGet, {
+  course,
+  period,
+  name: subject,
+});
+
+if (error) {
+  throw new Error("No se ha podido obtener la materia.");
+}
+---
+
+<Layout transition:animate="none">
+  <div
+    class="overflow-x-auto max-w-full lg:px-6 py-6 bg-gray-100/70 rounded-xl backdrop-blur-2xl"
+  >
+    <div class="px-6">
+      <Header
+        course={course}
+        period={period}
+        subject={subject as SubjectKind}
+      />
+      <Toolbar course={course} subjectId={data.id} />
+    </div>
+
+    <Table subjectId={data.id} course={course} period={period} />
+  </div>
+
+  <BackLight position="bottom" />
+</Layout>

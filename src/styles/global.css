@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "./table.css";
+
+@theme {
+  --color-default-100: #27272a;
+}
+
+.courses {
+  @apply w-fit mt-10 grid grid-cols-2 md:grid-cols-3 gap-5;
+}

@@ -1,0 +1,34 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import Layout from "@/layouts/Layout.astro";
+import BackLight from "@/components/common/BackLight.astro";
+import Period from "@/components/common/Period.astro";
+import { courses } from "@/pages/_metadata/courses";
+
+export const getStaticPaths = (() => {
+  return courses.map((course, i) => ({
+    params: { course: i },
+    props: { course },
+  }));
+}) satisfies GetStaticPaths;
+
+const { course } = Astro.props;
+---
+
+<Layout class="p-12 flex flex-col items-center">
+  <BackLight />
+  <h2
+    class="text-center text-5xl font-semibold tracking-tight text-gray-900"
+    transition:animate="slide"
+  >
+    {course}
+  </h2>
+
+  <section class="w-fit mt-10 grid grid-cols-1 gap-5">
+    <Period text="Primer Periodo" icon="/periods/spring.webp" period={1} />
+    <Period text="Segundo Periodo" icon="/periods/summer.webp" period={2} />
+    <Period text="Tercer Periodo" icon="/periods/autumn.webp" period={3} />
+    <Period text="Cuarto Periodo" icon="/periods/winter.webp" period={4} />
+  </section>
+</Layout>

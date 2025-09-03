@@ -1,0 +1,34 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCoursesAndPeriodProps } from "@/pages/_metadata/periods";
+import { subjects, type SubjectKind } from "@/pages/_metadata/subjects";
+
+import Layout from "@/layouts/Layout.astro";
+import Subject from "@/components/common/Subject.astro";
+import BackLight from "@/components/common/BackLight.astro";
+
+export const getStaticPaths = (() => {
+  return getCoursesAndPeriodProps();
+}) satisfies GetStaticPaths;
+
+const { courseName, periodName } = Astro.props;
+---
+
+<Layout class="p-12 flex flex-col items-center">
+  <BackLight />
+  <h2
+    class="text-center text-5xl font-semibold tracking-tight text-gray-900"
+    transition:animate="slide"
+  >
+    <span class="underline text-indigo-500">{courseName}</span> -
+    {periodName}
+  </h2>
+
+  <section class="courses">
+    {
+      Object.entries(subjects).map(([kind, title]) => (
+        <Subject subject={kind as SubjectKind} text={title} />
+      ))
+    }
+  </section>
+</Layout>
