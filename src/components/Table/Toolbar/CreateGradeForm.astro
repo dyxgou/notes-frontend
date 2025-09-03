@@ -1,0 +1,58 @@
+---
+interface Props {
+  subjectId: number;
+}
+
+const { subjectId } = Astro.props;
+---
+
+<form
+  method="dialog"
+  id="add-grade-form"
+  class="flex flex-col gap-3"
+  aria-describedby="form-message"
+>
+  <label for="name" class="block text-sm font-medium text-gray-700">
+    Nombre de la Nota
+  </label>
+
+  <input
+    type="text"
+    name="name"
+    required
+    minlength="3"
+    maxlength="15"
+    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+    placeholder="Introduce el nombre de la nota"
+  />
+
+  <div
+    title="Sí una nota es examen final tendrá un valor del 30%"
+    class="flex items-center gap-3"
+  >
+    <input
+      class="rounded-full"
+      type="checkbox"
+      id="is_final_exam"
+      name="final_exam"
+    />
+    <label for="is_final_exam" class="text-gray-900">Es Examen Final</label>
+  </div>
+
+  <span class="font-light text-gray-600 text-sm">
+    El nombre debe tener un máximo de 15 caracteres.
+  </span>
+
+  <input type="hidden" name="id" value={subjectId} />
+
+  <button
+    class="mt-4 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 cursor-pointer"
+    type="submit"
+  >
+    Añadir Nota
+  </button>
+</form>
+
+<script>
+  import "./scripts/createGrade.ts";
+</script>

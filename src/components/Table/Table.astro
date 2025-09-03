@@ -1,0 +1,15 @@
+---
+import GradesTable from "./Grades/GradesTable.tsx";
+
+interface Props {
+  subjectId: number;
+  course: number;
+  period: number;
+}
+---
+
+<main class="bg-white w-full rounded-xl border border-gray-200 overflow-hidden">
+  <div class="overflow-x-auto" id="grades-container">
+    <GradesTable client:load {...Astro.props} />
+  </div>
+</main>

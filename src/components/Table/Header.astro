@@ -1,0 +1,42 @@
+---
+import Cap from "@/assets/cap.svg";
+import { getHeaderInfo } from "@/pages/_metadata/header";
+import type { SubjectKind } from "@/pages/_metadata/subjects";
+
+interface Props {
+  course: number;
+  period: number;
+  subject: SubjectKind;
+}
+
+const { course, period, subject } = getHeaderInfo(Astro.props);
+---
+
+<header class="mb-8">
+  <div class="flex items-center gap-3 mb-6">
+    <div
+      class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white"
+    >
+      <Cap />
+    </div>
+    <div>
+      <h1 class="text-2xl font-semibold text-gray-900">
+        Sistema de Administración de Notas
+      </h1>
+      <p class="text-sm text-gray-500">
+        ¡ Administra tus notas de forma Inteligente !
+      </p>
+    </div>
+  </div>
+
+  <!-- Breadcrumbs -->
+  <div class="flex items-center gap-2 text-lg text-gray-900 font-medium mb-6">
+    <span class="mr-10">
+      Curso: {course}
+    </span>
+    <span class="text-gray-400 mx-2">/</span>
+    <span class="text-gray-800">{period}</span>
+    <span class="text-gray-400 mx-2">/</span>
+    <span>{subject}</span>
+  </div>
+</header>

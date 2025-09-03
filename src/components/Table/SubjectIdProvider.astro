@@ -1,0 +1,28 @@
+---
+import { setServerSubjectId } from "@/store/subject";
+import { actions } from "astro:actions";
+
+interface Props {
+  course: number;
+  period: number;
+  subject: string;
+}
+
+const { course, period, subject } = Astro.props;
+
+const { data, error } = await Astro.callAction(actions.subject.createOrGet, {
+  course: +course,
+  period: +period,
+  name: subject,
+});
+
+if (error) {
+  throw new Error("No se ha podido obtener la materia.");
+}
+
+setServerSubjectId(data.id);
+---
+
+<div>
+  <slot />
+</div>
