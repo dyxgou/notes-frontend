@@ -3,18 +3,18 @@ import useColor, { BACKGROUND_HEX_OPACITY } from "./hooks/useColor";
 import useUpdateNote from "./hooks/useUpdateNote";
 import useFetchNote from "./hooks/useFetchNote";
 import type { TargetedEvent } from "preact/compat";
-import type { Signal } from "@preact/signals";
+import { type StudentSignal } from "@/components/Table/Students/StudentBody";
 
 type NoteValueProps = {
   studentId: number;
   gradeId: number;
-  studentIdSignal: Signal<number>;
+  studentSignal: StudentSignal;
 };
 
 const NoteValue: FunctionalComponent<NoteValueProps> = ({
   studentId,
   gradeId,
-  studentIdSignal,
+  studentSignal,
 }) => {
   const { value, setValue, id, initialValue } = useFetchNote(
     studentId,
@@ -23,7 +23,7 @@ const NoteValue: FunctionalComponent<NoteValueProps> = ({
 
   const color = useColor(value);
 
-  useUpdateNote({ id, initialValue, value, studentId, studentIdSignal });
+  useUpdateNote({ id, initialValue, value, studentId, studentSignal });
 
   const handleNoteChange = (e: TargetedEvent<HTMLInputElement>) => {
     e.preventDefault();

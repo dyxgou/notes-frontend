@@ -2,25 +2,25 @@ import type { FunctionalComponent } from "preact";
 import useColor, { BACKGROUND_HEX_OPACITY } from "./hooks/useColor";
 import useFetchAverage, { fetchAverage } from "./hooks/useFetchAverage";
 import { useEffect } from "preact/hooks";
-import type { Signal } from "@preact/signals";
+import { type StudentSignal } from "../Students/StudentBody";
 
 type AverageProps = {
   studentId: number;
   subjectId: number;
-  studentIdSignal: Signal<number>;
+  studentSignal: StudentSignal;
 };
 
 const Average: FunctionalComponent<AverageProps> = ({
   studentId,
   subjectId,
-  studentIdSignal,
+  studentSignal,
 }) => {
   const [average, setAverage] = useFetchAverage(studentId, subjectId);
   const color = useColor(average);
 
   useEffect(() => {
-    const unsubscribe = studentIdSignal.subscribe((id) => {
-      if (id === studentId) {
+    const unsubscribe = studentSignal.subscribe((student) => {
+      if (student.studentId === studentId) {
         fetchAverage(studentId, subjectId, setAverage);
       }
     });
