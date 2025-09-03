@@ -6,6 +6,8 @@ import preact from "@astrojs/preact";
 
 import node from "@astrojs/node";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
@@ -14,7 +16,5 @@ export default defineConfig({
 
   integrations: [preact({ compat: true })],
 
-  adapter: node({
-    mode: "standalone",
-  }),
+  adapter: vercel(),
 });

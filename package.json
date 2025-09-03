@@ -11,6 +11,7 @@
   "dependencies": {
     "@astrojs/node": "^9.4.0",
     "@astrojs/preact": "^4.1.0",
+    "@astrojs/vercel": "^8.2.7",
     "@nanostores/preact": "1.0.0",
     "@preact/signals": "2.3.1",
     "@tailwindcss/vite": "^4.1.11",
