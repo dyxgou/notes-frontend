@@ -31,11 +31,17 @@ export const create = defineAction({
       if (res.status === CONFLICT_STATUS) {
         const text = await res.text();
         const isFinalExamError = text.includes("final exam"); // This is shit
+        const cannotAddFinalGrade = text.includes("Cannot add non-final grade");
 
         if (isFinalExamError) {
           throw new ActionError({
             code: "CONFLICT",
             message: "Ya existe un examen final en ésta materia.",
+          });
+        } else if (cannotAddFinalGrade) {
+          throw new ActionError({
+            code: "CONFLICT",
+            message: "Tienes que agregar un examen final.",
           });
         }
 
