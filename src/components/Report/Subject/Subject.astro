@@ -1,0 +1,65 @@
+---
+import TableHeader from "../TableHeader.astro";
+import Asignature from "../Asignature/Asignature.astro";
+import { type SubjectKind } from "@/pages/_metadata/subjects";
+import Accumulated from "../Asignature/Accumulated.astro";
+
+interface Props {
+  studentId: number;
+  sectionName: string;
+  course: number;
+  subjects: SubjectKind[];
+}
+
+const { studentId, sectionName, subjects, course } = Astro.props;
+---
+
+<article
+  class="text-card-foreground rounded-xl break-inside-avoid bg-white border border-gray-200 shadow-sm"
+>
+  <table class="w-full caption-bottom text-sm table-fixed">
+    <thead>
+      <tr class="border-b border-b-gray-300 bg-gray-50">
+        <TableHeader name={sectionName} />
+        <TableHeader name="1°" />
+        <TableHeader name="2°" />
+        <TableHeader name="3°" />
+        <TableHeader name="4°" />
+        <TableHeader name="Acumulado" />
+        <TableHeader name="Desempeño" />
+      </tr>
+    </thead>
+
+    <tbody>
+      {
+        subjects.map((subject, i) => (
+          <tr>
+            <Asignature
+              studentId={studentId}
+              course={course}
+              subjectName={subject}
+            />
+            {i === 0 && (
+              <Accumulated
+                studentId={studentId}
+                course={course}
+                subjects={subjects}
+              />
+            )}
+          </tr>
+        ))
+      }
+    </tbody>
+    <caption class="py-2 px-3 text-left border-t-1 border-t-gray-300">
+      {
+        subjects.map(() => (
+          <p class="prose-sm">
+            Interpreta con cierta regularidad expresiones algebraicas y
+            funciones, aplicándolas parcialmente en contextos reales y
+            sustentando ideas con coherencia básica.
+          </p>
+        ))
+      }
+    </caption>
+  </table>
+</article>
