@@ -2,14 +2,14 @@ import useDebounce from "@/hooks/useDebounce";
 import { actions } from "astro:actions";
 import { useEffect } from "preact/hooks";
 import { toast } from "sonner";
-import { type StudentSignal } from "@/components/Table/Students/StudentBody";
+import { type NoteChangesSignal } from "@/components/Table/Students/StudentBody";
 
 type UpdateNoteParams = {
   id: number;
   initialValue: number;
   value: number;
   studentId: number;
-  studentSignal: StudentSignal;
+  noteChangesSignal: NoteChangesSignal;
 };
 
 const useUpdateNote = ({
@@ -17,7 +17,7 @@ const useUpdateNote = ({
   initialValue,
   value,
   studentId,
-  studentSignal,
+  noteChangesSignal,
 }: UpdateNoteParams) => {
   if (id === 0) {
     return;
@@ -49,7 +49,7 @@ const useUpdateNote = ({
 
     if (initialValue !== newValue) {
       changeValue();
-      studentSignal.value = { studentId, noteId: id };
+      noteChangesSignal.value = { studentId, noteId: id };
     }
   }, [newValue]);
 };

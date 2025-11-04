@@ -2,16 +2,16 @@ import { $grades } from "@/store/grades";
 import { useStore } from "@nanostores/preact";
 import { Fragment, type FunctionalComponent } from "preact";
 import NoteValue from "./NoteValue";
-import { type StudentSignal } from "@/components/Table/Students/StudentBody";
+import { type NoteChangesSignal } from "@/components/Table/Students/StudentBody";
 
 type NotesProps = {
   studentId: number;
-  studentSignal: StudentSignal;
+  noteChangesSignal: NoteChangesSignal;
 };
 
 const Notes: FunctionalComponent<NotesProps> = ({
   studentId,
-  studentSignal,
+  noteChangesSignal,
 }) => {
   const grades = useStore($grades);
 
@@ -19,7 +19,7 @@ const Notes: FunctionalComponent<NotesProps> = ({
     <Fragment>
       {grades.map(({ id }) => (
         <NoteValue
-          studentSignal={studentSignal}
+          noteChangesSignal={noteChangesSignal}
           gradeId={id}
           studentId={studentId}
         />

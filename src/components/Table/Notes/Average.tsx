@@ -2,30 +2,38 @@ import type { FunctionalComponent } from "preact";
 import useColor, { BACKGROUND_HEX_OPACITY } from "./hooks/useColor";
 import useFetchAverage, { fetchAverage } from "./hooks/useFetchAverage";
 import { useEffect } from "preact/hooks";
-import { type StudentSignal } from "../Students/StudentBody";
+import { type NoteChangesSignal } from "../Students/StudentBody";
 
 type AverageProps = {
   studentId: number;
   subjectId: number;
-  studentSignal: StudentSignal;
+  noteChangesSignal: NoteChangesSignal;
 };
 
 const Average: FunctionalComponent<AverageProps> = ({
   studentId,
   subjectId,
-  studentSignal,
+  noteChangesSignal,
 }) => {
   const [average, setAverage] = useFetchAverage(studentId, subjectId);
   const color = useColor(average);
 
   useEffect(() => {
-    const unsubscribe = studentSignal.subscribe((student) => {
-      if (student.studentId === studentId) {
+    const unsubscribeNoteChanges = noteChangesSignal.subscribe((noteChange) => {
+      if (noteChange.studentId === studentId) {
         fetchAverage(studentId, subjectId, setAverage);
       }
     });
 
-    return unsubscribe;
+    // const unsubscribeGrades = $grades.subscribe(() => {
+    //   console.log("Cambio");
+    //   fetchAverage(studentId, subjectId, setAverage);
+    // });
+
+    return () => {
+      unsubscribeNoteChanges();
+      // unsubscribeGrades();
+    };
   }, []);
 
   return (
