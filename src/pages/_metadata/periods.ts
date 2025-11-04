@@ -10,7 +10,7 @@ export const periods = [
 export const getCoursesAndPeriodProps = () =>
   courses.flatMap((courseName, course) =>
     periods.map((periodName, period) => ({
-      params: { course, period },
+      params: { course, period: period + 1 },
       props: { courseName, periodName },
     })),
   );

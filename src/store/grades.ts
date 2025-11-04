@@ -28,7 +28,7 @@ $subject.listen(() => {
   });
 });
 
-export function gradesLength() {
+export function getGradesLength() {
   return $grades.value.length;
 }
 

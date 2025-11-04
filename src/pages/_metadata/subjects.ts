@@ -12,23 +12,35 @@ export type SubjectKind =
   | "spanish"
   | "english"
   | "sexual"
-  | "project";
+  | "project"
+  | "biology"
+  | "geometry"
+  | "taekwondo"
+  | "reading"
+  | "militar"
+  | "trigonometric";
 
 export const subjects: Record<SubjectKind, string> = {
   math: "Matemáticas",
-  ethics: "Ética",
-  religion: "Religión",
-  tech: "Informática",
-  art: "Arte",
+  geometry: "Geometría",
+  trigonometric: "Trigonometría",
   physics: "Física",
   chemistry: "Química",
+  biology: "Biología",
   philosophy: "Filosofía",
   politics: "Ciencias Políticas",
   social: "Ciencias Sociales",
   spanish: "Español",
   english: "Inglés",
+  ethics: "Ética",
+  religion: "Religión",
+  tech: "Informática",
+  art: "Arte",
   sexual: "Educación Sexual",
   project: "Proyecto",
+  taekwondo: "Taekwondo",
+  reading: "Lectura Crítica",
+  militar: "Formación Militar",
 };
 
 export type ValidateParamsArgs = {
