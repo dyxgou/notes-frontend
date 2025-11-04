@@ -3,7 +3,11 @@ import { useStore } from "@nanostores/preact";
 import type { FunctionComponent } from "preact";
 import Name from "./Name.tsx";
 
-const GradesHeader: FunctionComponent = () => {
+type GradesHeaderProps = {
+  subjectId: number;
+};
+
+const GradesHeader: FunctionComponent<GradesHeaderProps> = ({ subjectId }) => {
   const grades = useStore($grades);
 
   return (
@@ -14,7 +18,7 @@ const GradesHeader: FunctionComponent = () => {
         </th>
 
         {grades.map((grade) => (
-          <Name {...grade} />
+          <Name {...grade} subjectId={subjectId} />
         ))}
 
         <th className="px-6 py-4 text-center text-xs font-medium text-gray-500 uppercase tracking-wider min-w-[120px]">
