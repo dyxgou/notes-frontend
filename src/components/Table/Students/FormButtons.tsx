@@ -1,16 +1,23 @@
 import type { FunctionalComponent } from "preact";
 import AcademicIcon from "@/components/Table/Icons/Academic";
 import CrossIcon from "@/components/Table/Icons/Cross";
+import { useContext } from "preact/hooks";
+import { Period } from "@/components/Table/Grades/GradesTable";
 
 type FormButtonProps = {
   hasChanged: boolean;
+  id: number;
 };
 
-const FormButtons: FunctionalComponent<FormButtonProps> = ({ hasChanged }) => {
+const FormButtons: FunctionalComponent<FormButtonProps> = ({
+  id,
+  hasChanged,
+}) => {
+  const period = useContext(Period);
   return (
     <footer className="mt-5">
       <a
-        href="/report/"
+        href={`/report/${period}/${id}`}
         className="py-3 mb-4 flex items-center justify-center gap-3 rounded-xl bg-[#10b981] text-white font-semibold"
       >
         <AcademicIcon />

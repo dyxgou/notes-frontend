@@ -66,13 +66,13 @@ const ChangeStudentInfo: FunctionalComponent<StudentProps> = ({
         value={newName}
         onInput={(e) => setNewName(e.currentTarget.value)}
         minlength={4}
-        maxlength={30}
+        maxlength={40}
         required
         autocomplete="off"
         className="border-1 border-gray-400 w-full px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 invalid:border-red-500"
       />
       <p className="text-xs text-gray-500 mb-1">
-        Mínimo 4 caracteres, máximo 30.
+        Mínimo 4 caracteres, máximo 40.
       </p>
 
       <label
@@ -98,7 +98,7 @@ const ChangeStudentInfo: FunctionalComponent<StudentProps> = ({
         10 dígitos sin espacios ni guiones.
       </p>
 
-      <FormButtons hasChanged={hasChangedName || hasChangedPhone} />
+      <FormButtons id={id} hasChanged={hasChangedName || hasChangedPhone} />
     </form>
   );
 };

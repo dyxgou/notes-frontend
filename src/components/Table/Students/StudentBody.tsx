@@ -4,19 +4,22 @@ import { type FunctionComponent } from "preact";
 import Student from "./Student";
 import Notes from "@/components/Table/Notes/Notes";
 import Average from "@/components/Table/Notes/Average";
-import { Signal, useSignal } from "@preact/signals";
+import { type Signal, useSignal } from "@preact/signals";
 
 type StudentBodyProps = {
   subjectId: number;
 };
 
-export type StudentSignal = Signal<{
+export type NoteChangesSignal = Signal<{
   studentId: number;
   noteId: number;
 }>;
 
 const StudentBody: FunctionComponent<StudentBodyProps> = ({ subjectId }) => {
-  const studentSignal: StudentSignal = useSignal({ studentId: 0, noteId: 0 });
+  const noteChangesSignal: NoteChangesSignal = useSignal({
+    studentId: 0,
+    noteId: 0,
+  });
   const students = useStore($students);
 
   return (
@@ -25,10 +28,10 @@ const StudentBody: FunctionComponent<StudentBodyProps> = ({ subjectId }) => {
         <tr className="hover:bg-gray-100 transition-colors duration-150">
           <Student id={id} name={name} index={index} phone={parent_phone} />
 
-          <Notes studentSignal={studentSignal} studentId={id} />
+          <Notes noteChangesSignal={noteChangesSignal} studentId={id} />
 
           <Average
-            studentSignal={studentSignal}
+            noteChangesSignal={noteChangesSignal}
             studentId={id}
             subjectId={subjectId}
           />

@@ -4,9 +4,7 @@ import Arrow from "@/components/Table/Icons/Arrow";
 import { useRef } from "preact/hooks";
 import Dialog from "./Dialog";
 
-type PopupProps = StudentProps & {};
-
-const Popup: FunctionalComponent<PopupProps> = ({ ...student }) => {
+const Popup: FunctionalComponent<StudentProps> = ({ ...student }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
 
   return (
