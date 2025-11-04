@@ -1,0 +1,37 @@
+---
+import Average from "./Average.astro";
+import { subjects, type SubjectKind } from "@/pages/_metadata/subjects";
+import { actions } from "astro:actions";
+
+interface Props {
+  studentId: number;
+  subjectName: SubjectKind;
+  course: number;
+}
+
+const { studentId, subjectName, course } = Astro.props;
+const name = subjects[subjectName];
+
+const { data, error } = await Astro.callAction(
+  actions.report.getSubjectReport,
+  {
+    studentId,
+    name: subjectName as string,
+    course,
+  },
+);
+
+if (error) {
+  throw error;
+}
+
+const [first, second, third, fourth] = data;
+---
+
+<td class="py-2 px-4 w-full text-center uppercase font-medium text-gray-900">
+  {name}
+</td>
+<Average average={first} />
+<Average average={second} />
+<Average average={third} />
+<Average average={fourth} />

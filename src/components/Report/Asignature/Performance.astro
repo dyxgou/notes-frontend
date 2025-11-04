@@ -1,0 +1,38 @@
+---
+export const BACKGROUND_HEX_OPACITY = "20";
+type Colors = (typeof colors)[number];
+type Performances = (typeof performances)[number];
+
+interface Props {
+  average: number;
+  rowspan: number;
+}
+
+const { average, rowspan } = Astro.props;
+
+const colors = ["#fca5a5", "#fdba74", "#93c5fd", "#86efac", "#86efac"] as const;
+const performances = ["Bajo", "Regular", "Medio", "Alto", "Superior"] as const;
+const DEFAULT_COLOR = colors[0];
+const DEFAULT_PERFORMANCE = performances[0];
+
+const i = Math.floor(average / 10) - 1;
+let color: Colors = DEFAULT_COLOR;
+let performance: Performances = DEFAULT_PERFORMANCE;
+
+if (i > 0 && i < colors.length) {
+  color = colors[i];
+  performance = performances[i];
+}
+---
+
+<td class="p-4 align-middle text-center font-semibold" rowspan={rowspan}>
+  <span
+    style={{
+      borderColor: color,
+      backgroundColor: color + BACKGROUND_HEX_OPACITY,
+    }}
+    class="w-16 px-4 py-1 text-sm text-center border-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent font-normal"
+  >
+    {performance}
+  </span>
+</td>

@@ -1,0 +1,32 @@
+---
+import type { SubjectKind } from "@/pages/_metadata/subjects";
+import Performance from "./Performance.astro";
+import { actions } from "astro:actions";
+
+interface Props {
+  studentId: number;
+  course: number;
+  subjects: SubjectKind[];
+}
+
+const { studentId, course, subjects } = Astro.props;
+const { data, error } = await Astro.callAction(
+  actions.report.getSubjectsAverage,
+  {
+    studentId,
+    course,
+    names: subjects as [string, ...string[]],
+  },
+);
+
+if (error) {
+  throw error;
+}
+
+const { average } = data;
+---
+
+<td class="p-4 align-middle text-center font-semibold" rowspan={subjects.length}
+  >{(average / 10).toFixed(1)}</td
+>
+<Performance average={average} rowspan={subjects.length} />

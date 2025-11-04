@@ -1,0 +1,11 @@
+---
+interface Props {
+  average?: number;
+}
+
+const { average } = Astro.props;
+---
+
+<td class="p-2 align-middle text-center font-semibold">
+  {average ? (average / 10).toFixed(1) : "-"}
+</td>
