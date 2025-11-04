@@ -10,6 +10,6 @@ interface Props {
 
 <main class="bg-white w-full rounded-xl border border-gray-200 overflow-hidden">
   <div class="overflow-x-auto" id="grades-container">
-    <GradesTable client:load {...Astro.props} />
+    <GradesTable client:only {...Astro.props} />
   </div>
 </main>

@@ -14,6 +14,7 @@ document.addEventListener(
       e.preventDefault();
 
       const formData = new FormData(form);
+
       const isFinalExam = formData.get(finalExamAttr);
 
       if (isFinalExam) {
