@@ -8,7 +8,7 @@ const API_URL = getSecret("PUBLIC_API_URL");
 export const create = defineAction({
   accept: "form",
   input: z.object({
-    name: z.string().min(4).max(30),
+    name: z.string().min(4).max(40),
     parent_phone: z.string().length(10),
     course: z.number().gte(0).lte(11),
   }),
