@@ -18,7 +18,8 @@ export type SubjectKind =
   | "taekwondo"
   | "reading"
   | "militar"
-  | "trigonometric";
+  | "trigonometric"
+  | "peace";
 
 export const subjects: Record<SubjectKind, string> = {
   math: "Matemáticas",
@@ -41,6 +42,7 @@ export const subjects: Record<SubjectKind, string> = {
   taekwondo: "Taekwondo",
   reading: "Lectura Crítica",
   militar: "Formación Militar",
+  peace: "Cátedra de Paz",
 };
 
 export type ValidateParamsArgs = {
@@ -68,6 +70,13 @@ export const validateParams: ValidateParams = ({ course, period, subject }) => {
 
   if (!subject) {
     throw new Error("La materia a la que entraste es invalida.");
+  }
+
+  const invalidSubject = Object.keys(subjects).findIndex((s) => s === subject);
+  const INVALID_INDEX = -1;
+
+  if (invalidSubject === INVALID_INDEX) {
+    throw new Error("La materia es invalida.");
   }
 
   return {
