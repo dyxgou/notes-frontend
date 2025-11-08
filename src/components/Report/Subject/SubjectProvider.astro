@@ -1,42 +1,13 @@
 ---
+import { getReportByCourse } from "@/pages/_metadata/reports";
 import Subject from "./Subject.astro";
 
 interface Props {
   studentId: number;
   course: number;
 }
+
+const subjectReport = getReportByCourse(Astro.props.course);
 ---
 
-<Subject
-  {...Astro.props}
-  sectionName="Ciencias Naturales"
-  subjects={["physics", "chemistry"]}
-/>
-
-<Subject
-  {...Astro.props}
-  sectionName="Ciencias Sociales"
-  subjects={["philosophy", "politics", "social"]}
-/>
-
-<Subject
-  {...Astro.props}
-  sectionName="Humanidades"
-  subjects={["spanish", "english"]}
-/>
-
-<Subject {...Astro.props} sectionName="Artes" subjects={["art"]} />
-
-<Subject {...Astro.props} sectionName="Ética" subjects={["ethics"]} />
-
-<Subject {...Astro.props} sectionName="Religión" subjects={["religion"]} />
-
-<Subject {...Astro.props} sectionName="Matemáticas" subjects={["math"]} />
-
-<Subject {...Astro.props} sectionName="Tecnología" subjects={["tech"]} />
-
-<Subject
-  {...Astro.props}
-  sectionName="Optativas"
-  subjects={["sexual", "project"]}
-/>
+{subjectReport.map((report) => <Subject {...Astro.props} {...report} />)}
