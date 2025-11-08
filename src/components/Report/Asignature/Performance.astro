@@ -1,7 +1,7 @@
 ---
+import { getPerformance } from "@/pages/_metadata/performance";
+
 export const BACKGROUND_HEX_OPACITY = "20";
-type Colors = (typeof colors)[number];
-type Performances = (typeof performances)[number];
 
 interface Props {
   average: number;
@@ -10,19 +10,7 @@ interface Props {
 
 const { average, rowspan } = Astro.props;
 
-const colors = ["#fca5a5", "#fdba74", "#93c5fd", "#86efac", "#86efac"] as const;
-const performances = ["Bajo", "Regular", "Medio", "Alto", "Superior"] as const;
-const DEFAULT_COLOR = colors[0];
-const DEFAULT_PERFORMANCE = performances[0];
-
-const i = Math.floor(average / 10) - 1;
-let color: Colors = DEFAULT_COLOR;
-let performance: Performances = DEFAULT_PERFORMANCE;
-
-if (i > 0 && i < colors.length) {
-  color = colors[i];
-  performance = performances[i];
-}
+const { color, performance } = getPerformance(average);
 ---
 
 <td class="p-4 align-middle text-center font-semibold" rowspan={rowspan}>
