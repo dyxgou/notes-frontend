@@ -2,7 +2,7 @@ import type { FunctionalComponent } from "preact";
 import useColor, { BACKGROUND_HEX_OPACITY } from "./hooks/useColor";
 import useUpdateNote from "./hooks/useUpdateNote";
 import useFetchNote from "./hooks/useFetchNote";
-import type { TargetedEvent } from "preact/compat";
+import { useEffect, useState, type TargetedEvent } from "preact/compat";
 import { type NoteChangesSignal } from "@/components/Table/Students/StudentBody";
 
 type NoteValueProps = {
@@ -21,12 +21,22 @@ const NoteValue: FunctionalComponent<NoteValueProps> = ({
     gradeId,
   );
 
+  const [inputValue, setInputValue] = useState<string>(value.toString());
+
   const color = useColor(value);
+
+  useEffect(() => {
+    if (initialValue != 10) {
+      setInputValue(initialValue.toString());
+    }
+  }, [initialValue]);
 
   useUpdateNote({ id, initialValue, value, studentId, noteChangesSignal });
 
   const handleNoteChange = (e: TargetedEvent<HTMLInputElement>) => {
     e.preventDefault();
+
+    setInputValue(e.currentTarget.value);
 
     const value = parseInt(e.currentTarget.value);
     if (isNaN(value)) {
@@ -40,7 +50,7 @@ const NoteValue: FunctionalComponent<NoteValueProps> = ({
     <td key={id} className="p-4 text-center border-r-1 border-r-gray-300">
       <input
         type="number"
-        value={value}
+        value={inputValue}
         onInput={handleNoteChange}
         minlength={2}
         style={{
