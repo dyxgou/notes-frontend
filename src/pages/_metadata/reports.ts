@@ -24,12 +24,20 @@ export const getReportByCourse = (course: number): Report[] => {
 export const subjectReports: Record<ReportKind, Report[]> = {
   primary: [
     {
-      sectionName: "Ciencias Naturales",
-      subjects: ["biology"],
+      sectionName: "Matemáticas",
+      subjects: ["math"],
+    },
+    {
+      sectionName: "Humanidades",
+      subjects: ["spanish", "english"],
     },
     {
       sectionName: "Ciencias Sociales",
       subjects: ["social"],
+    },
+    {
+      sectionName: "Ciencias Naturales",
+      subjects: ["biology"],
     },
     {
       sectionName: "Artes",
@@ -46,14 +54,6 @@ export const subjectReports: Record<ReportKind, Report[]> = {
     {
       sectionName: "Religión",
       subjects: ["religion"],
-    },
-    {
-      sectionName: "Humanidades",
-      subjects: ["spanish", "english"],
-    },
-    {
-      sectionName: "Matemáticas",
-      subjects: ["math"],
     },
     {
       sectionName: "Tecnología",
@@ -66,12 +66,24 @@ export const subjectReports: Record<ReportKind, Report[]> = {
   ],
   basic: [
     {
-      sectionName: "Ciencias Naturales",
-      subjects: ["biology"],
+      sectionName: "Matemáticas",
+      subjects: ["math", "geometry"],
+    },
+    {
+      sectionName: "Humanidades",
+      subjects: ["spanish", "english"],
     },
     {
       sectionName: "Ciencias Sociales",
       subjects: ["social"],
+    },
+    {
+      sectionName: "Ciencias Naturales",
+      subjects: ["biology"],
+    },
+    {
+      sectionName: "Optativas",
+      subjects: ["reading", "sexual", "project"],
     },
     {
       sectionName: "Artes",
@@ -90,20 +102,8 @@ export const subjectReports: Record<ReportKind, Report[]> = {
       subjects: ["religion"],
     },
     {
-      sectionName: "Humanidades",
-      subjects: ["spanish", "english"],
-    },
-    {
-      sectionName: "Matemáticas",
-      subjects: ["math", "geometry"],
-    },
-    {
       sectionName: "Tecnología",
       subjects: ["tech"],
-    },
-    {
-      sectionName: "Optativas",
-      subjects: ["reading", "sexual", "project"],
     },
     {
       sectionName: "Orientación Militar",
@@ -111,6 +111,14 @@ export const subjectReports: Record<ReportKind, Report[]> = {
     },
   ],
   "pre-militar": [
+    {
+      sectionName: "Matemáticas",
+      subjects: ["math"],
+    },
+    {
+      sectionName: "Humanidades",
+      subjects: ["spanish", "english"],
+    },
     {
       sectionName: "Ciencias Naturales",
       subjects: ["biology", "physics"],
@@ -136,14 +144,6 @@ export const subjectReports: Record<ReportKind, Report[]> = {
       subjects: ["religion"],
     },
     {
-      sectionName: "Humanidades",
-      subjects: ["spanish", "english"],
-    },
-    {
-      sectionName: "Matemáticas",
-      subjects: ["math"],
-    },
-    {
       sectionName: "Tecnología",
       subjects: ["tech"],
     },
@@ -156,6 +156,10 @@ export const subjectReports: Record<ReportKind, Report[]> = {
     {
       sectionName: "Ciencias Naturales",
       subjects: ["physics", "chemistry"],
+    },
+    {
+      sectionName: "Humanidades",
+      subjects: ["spanish", "english"],
     },
     {
       sectionName: "Ciencias Sociales",
@@ -176,10 +180,6 @@ export const subjectReports: Record<ReportKind, Report[]> = {
     {
       sectionName: "Religión",
       subjects: ["religion"],
-    },
-    {
-      sectionName: "Humanidades",
-      subjects: ["spanish", "english"],
     },
     {
       sectionName: "Matemáticas",

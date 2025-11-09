@@ -1,17 +1,21 @@
 ---
 import type { GetStaticPaths } from "astro";
 import { getCoursesAndPeriodProps } from "@/pages/_metadata/periods";
-import { subjects, type SubjectKind } from "@/pages/_metadata/subjects";
+import { subjects } from "@/pages/_metadata/subjects";
 
 import Layout from "@/layouts/Layout.astro";
 import Subject from "@/components/common/Subject.astro";
 import BackLight from "@/components/common/BackLight.astro";
+import { getReportByCourse } from "@/pages/_metadata/reports";
 
 export const getStaticPaths = (() => {
   return getCoursesAndPeriodProps();
 }) satisfies GetStaticPaths;
 
 const { courseName, periodName } = Astro.props;
+const { course } = Astro.params;
+
+const subjectReport = getReportByCourse(course);
 ---
 
 <Layout class="p-12 flex flex-col items-center">
@@ -26,9 +30,13 @@ const { courseName, periodName } = Astro.props;
 
   <section class="courses">
     {
-      Object.entries(subjects).map(([kind, title]) => (
-        <Subject subject={kind as SubjectKind} text={title} />
-      ))
+      subjectReport.map((report) =>
+        report.subjects.map((subject) => {
+          const subjectName = subjects[subject];
+
+          return <Subject subject={subject} name={subjectName} />;
+        }),
+      )
     }
   </section>
 </Layout>
