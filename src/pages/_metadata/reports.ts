@@ -12,7 +12,7 @@ export const getReportByCourse = (course: number): Report[] => {
     return subjectReports["primary"];
   } else if (course >= 6 && course <= 8) {
     return subjectReports["basic"];
-  } else if (course === 9) {
+  } else if (course == 9) {
     return subjectReports["pre-militar"];
   } else if (course >= 10 && course <= 11) {
     return subjectReports["militar"];
