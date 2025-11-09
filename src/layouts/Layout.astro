@@ -26,7 +26,7 @@ const { class: className } = Astro.props;
     <title>Mi Aprendizaje</title>
     <ClientRouter />
   </head>
-  <body class:list={["w-screen h-screen", [className]]}>
+  <body class:list={["w-screen h-screen overflow-x-hidden", [className]]}>
     <Toaster client:only richColors position="top-center" />
     <slot />
   </body>

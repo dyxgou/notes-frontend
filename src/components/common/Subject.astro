@@ -4,10 +4,10 @@ import { Image } from "astro:assets";
 
 interface Props {
   subject: SubjectKind;
-  text: string;
+  name: string;
 }
 
-const { subject, text } = Astro.props;
+const { subject, name } = Astro.props;
 ---
 
 <a
@@ -25,5 +25,5 @@ const { subject, text } = Astro.props;
     alt="Subject"
     src={`/subjects/${subject}.webp`}
   />
-  {text}</a
+  {name}</a
 >
